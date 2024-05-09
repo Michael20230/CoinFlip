@@ -2,6 +2,9 @@
 #define MAINSCENE_H
 
 #include <QMainWindow>
+#include <QPaintEvent>
+
+
 
 namespace Ui {
 class MainScene;
@@ -14,6 +17,7 @@ class MainScene : public QMainWindow
 public:
     explicit MainScene(QWidget *parent = 0);
     ~MainScene();
+    void paintEvent(QPaintEvent *);
 
 private:
     Ui::MainScene *ui;

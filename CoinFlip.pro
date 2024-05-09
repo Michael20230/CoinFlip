@@ -32,3 +32,10 @@ HEADERS += \
 
 FORMS += \
         mainscene.ui
+
+RESOURCES += \
+    res.qrc
+
+win32-msvc* {
+    QMAKE_CXXFLAGS += /source-charset:utf-8 /execution-charset:utf-8
+}
