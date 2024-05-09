@@ -1,7 +1,7 @@
 #include "mainscene.h"
 #include "ui_mainscene.h"
 #include "mypushbutton.h"
-#include "chooselevelscene.h"
+
 
 
 #include<QDir>
@@ -36,7 +36,7 @@ MainScene::MainScene(QWidget *parent) :
     });
 
     //选择关卡场景
-//    ChooseLevelScene* pChooseScene =new  ChooseLevelScene();
+    m_pChooseScene =new  ChooseLevel;
 //    QTimer::singleShot(500,this,[=](){
 //        this->hide();
 //        pChooseScene->show();

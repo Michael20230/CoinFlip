@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QPaintEvent>
 
-
+#include "chooselevel.h"
 
 namespace Ui {
 class MainScene;
@@ -21,6 +21,8 @@ public:
 
 private:
     Ui::MainScene *ui;
+
+    ChooseLevel* m_pChooseScene;
 };
 
 #endif // MAINSCENE_H

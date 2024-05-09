@@ -27,12 +27,12 @@ SOURCES += \
         main.cpp \
         mainscene.cpp \
     mypushbutton.cpp \
-    chooselevelscene.cpp
+    chooselevel.cpp
 
 HEADERS += \
         mainscene.h \
     mypushbutton.h \
-    chooselevelscene.h
+    chooselevel.h
 
 FORMS += \
         mainscene.ui
