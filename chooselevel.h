@@ -2,6 +2,8 @@
 #define CHOOSELEVEL_H
 
 #include <QMainWindow>
+#include <QPaintEvent>
+
 
 class ChooseLevel : public QMainWindow
 {
@@ -9,8 +11,9 @@ class ChooseLevel : public QMainWindow
 public:
     explicit ChooseLevel(QWidget *parent = nullptr);
 
+    void paintEvent(QPaintEvent *event);
 signals:
-
+    void chooseSceneBack();
 public slots:
 };
 

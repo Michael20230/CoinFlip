@@ -33,6 +33,42 @@ MyPushButton::MyPushButton(QString normalImg, QString pressImg)
     this->setIconSize(QSize(pixmap.width(),pixmap.height()));
 }
 
+void MyPushButton::mousePressEvent(QMouseEvent *e)
+{
+    if(m_pressImgPath != ""){
+        QPixmap pixmap;
+        bool ret =pixmap.load(m_pressImgPath);
+        if(!ret){
+            qDebug()<<m_pressImgPath<<"加载图片失败";
+        }
+
+        this->setFixedSize(pixmap.width(),pixmap.height());
+        this->setStyleSheet("QPushButton{border:0px;}");
+        this->setIcon(pixmap);
+        this->setIconSize(QSize(pixmap.width(),pixmap.height()));
+
+    }
+    //交给父类执行按下事件
+    return QPushButton::mousePressEvent(e);
+}
+
+void MyPushButton::mouseReleaseEvent(QMouseEvent *e)
+{
+    if(m_normalImgPath!=""){
+        QPixmap pixmap;
+        bool ret = pixmap.load(m_normalImgPath);
+        if(!ret){
+            qDebug()<<m_normalImgPath<<"加载图像失败！";
+        }
+        this->setFixedSize(pixmap.width(),pixmap.height() );
+        this->setStyleSheet("QPushButton{border:0px;}");
+        this->setIcon(pixmap);
+        this->setIconSize(QSize(pixmap.width(),pixmap.height()));
+
+    }
+    return QPushButton::mouseReleaseEvent(e);
+}
+
 void MyPushButton::ZoomUp()
 {
     qDebug()<<"enter zoom Up";

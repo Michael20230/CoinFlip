@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QObject>
+#include <QMouseEvent>
+
 
 class MyPushButton : public QPushButton
 {
@@ -12,10 +14,14 @@ public:
 //    explicit MyPushButton(QPushButton *parent = nullptr);//QWidget *parent = nullptr
     MyPushButton(QString normalImg,QString pressImg="");
 
+public:
+    void mousePressEvent(QMouseEvent* e);
+    void mouseReleaseEvent(QMouseEvent* e);
 
 public slots:
     void ZoomUp();
     void ZoomDown();
+
 
 private:
     QString m_normalImgPath;

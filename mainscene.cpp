@@ -33,14 +33,20 @@ MainScene::MainScene(QWidget *parent) :
     connect(pStartBtn,&MyPushButton::clicked,[=](){
         pStartBtn->ZoomUp();
         pStartBtn->ZoomDown();
+        QTimer::singleShot(500,this,[=](){
+            this->hide();
+            m_pChooseScene->move(this->x(),this->y());
+            m_pChooseScene->show();
+        });
     });
 
     //选择关卡场景
     m_pChooseScene =new  ChooseLevel;
-//    QTimer::singleShot(500,this,[=](){
-//        this->hide();
-//        pChooseScene->show();
-//    });
+
+    connect(m_pChooseScene,&ChooseLevel::chooseSceneBack,[=](){
+        this->move(m_pChooseScene->x(),m_pChooseScene->y());
+        this->show();
+    });
 }
 
 
