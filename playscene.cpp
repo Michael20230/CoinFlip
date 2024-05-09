@@ -1,5 +1,8 @@
 #include "playscene.h"
 #include "mypushbutton.h"
+#include "mycoin.h"
+
+
 
 #include <QMenuBar>
 #include <QMenu>
@@ -68,14 +71,22 @@ PlayScene::PlayScene(int iIndex)
             label->setParent(this);
             label->move(57+i*50,200+j*50);
 
+            //金币对象
+            MyCoin* coin = new MyCoin(":/res/Coin0001.png");
+            coin->setParent(this);
+            coin->move(59+i*50, 204+j*50);
+
         }
     }
+
+
 
 
 }
 
 void PlayScene::paintEvent(QPaintEvent *event)
 {
+    Q_UNUSED(event);
     //加载背景
     QPainter painter(this);
     QPixmap pixmap;
