@@ -42,7 +42,7 @@ MainScene::MainScene(QWidget *parent) :
 
     //选择关卡场景
     m_pChooseScene =new  ChooseLevel;
-
+    //监听选择场景的返回按钮
     connect(m_pChooseScene,&ChooseLevel::chooseSceneBack,[=](){
         this->move(m_pChooseScene->x(),m_pChooseScene->y());
         this->show();

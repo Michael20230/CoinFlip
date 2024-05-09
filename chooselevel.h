@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPaintEvent>
 
+#include "playscene.h"
+
 
 class ChooseLevel : public QMainWindow
 {
@@ -15,6 +17,9 @@ public:
 signals:
     void chooseSceneBack();
 public slots:
+
+private:
+    PlayScene* m_pPlayScene;
 };
 
 #endif // CHOOSELEVEL_H

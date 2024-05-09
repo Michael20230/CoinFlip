@@ -11,7 +11,7 @@
 
 MyPushButton::MyPushButton(QString normalImg, QString pressImg)
 {
-    qDebug()<<"enter MyPushButton(QString normalImg, QString pressImg)";
+    //qDebug()<<"enter MyPushButton(QString normalImg, QString pressImg)";
     //成员变量normalImgPath保存正常显示图片路径
     m_normalImgPath = normalImg;
     //成员变量pressImgPath保存按下后显示的图片

@@ -7,10 +7,11 @@
 #include <QPainter>
 #include <QTimer>
 #include <QLabel>
+#include <QDebug>
 
 
-
-ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent)
+ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent),
+  m_pPlayScene(nullptr)
 {
     //设置窗口固定大小
     this->setFixedSize(320,588);
@@ -27,6 +28,7 @@ ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent)
     QAction* quitAction = pStartMenu->addAction("退出");
     //点击退出，退出游戏
     connect(quitAction,&QAction::triggered,[=](){this->close();});
+
     //创建返回按钮
     MyPushButton* pCloseBtn = new MyPushButton(":/res/BackButton.png",":/res/BackButtonSelected.png");
     pCloseBtn->setParent(this);
@@ -37,8 +39,11 @@ ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent)
             emit this->chooseSceneBack();
         });
     });
+
+    //MyPushButton* menuBtn[20];;
     //创建关卡按钮
     for(int i=0; i<20; i++){
+        //qDebug()<<"connect 1   "<<i;
         MyPushButton* menuBtn = new MyPushButton(":/res/LevelIcon.png");
         menuBtn->setParent(this);
         menuBtn->move(25+(i%4)*70,130+(i/4)*70);
@@ -53,7 +58,25 @@ ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent)
         //鼠标穿透事件
         label->setAttribute(Qt::WA_TransparentForMouseEvents,true);
 
+        connect(menuBtn,&MyPushButton::clicked,[=]() {
+            if(m_pPlayScene == nullptr){
+                qDebug()<<"enter 111";
+                this->hide();
+                m_pPlayScene = new PlayScene(i+1);
+                m_pPlayScene->show();
+                m_pPlayScene->move(this->x(),this->y());
+            }
+            //监听PlayScene返回信号
+            connect(m_pPlayScene,&PlayScene::chooseScene,[=](){
+                this->show();
+                delete m_pPlayScene;
+                m_pPlayScene = nullptr;
+            });
+        });
+
     }
+
+
 }
 
 void ChooseLevel::paintEvent(QPaintEvent *event)
