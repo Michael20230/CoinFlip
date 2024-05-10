@@ -9,7 +9,7 @@
 #include <QPainter>
 #include <QFileInfo>
 #include <QTimer>
-
+#include <QSound>
 
 MainScene::MainScene(QWidget *parent) :
     QMainWindow(parent),
@@ -29,7 +29,8 @@ MainScene::MainScene(QWidget *parent) :
     pStartBtn->setParent(this);
     qDebug()<<"this->width = "<<this->width()<<"  this->Height() = "<<this->height();
     pStartBtn->move(this->width()*0.5 - pStartBtn->width()*0.5,this->height()*0.7);
-    //监听点击事件，执行特效
+	QSound* pStartSound = new QSound(":/res/TapButtonSound.wav", this);
+	//监听点击事件，执行特效
     connect(pStartBtn,&MyPushButton::clicked,[=](){
         pStartBtn->ZoomUp();
         pStartBtn->ZoomDown();
@@ -37,6 +38,8 @@ MainScene::MainScene(QWidget *parent) :
             this->hide();
             m_pChooseScene->move(this->x(),this->y());
             m_pChooseScene->show();
+			//播放开始游戏音效
+			pStartSound->play();
         });
     });
 

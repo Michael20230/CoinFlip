@@ -1,5 +1,8 @@
 #include "mainscene.h"
 #include <QApplication>
+#include "dataconfig.h"
+
+
 
 int main(int argc, char *argv[])
 {

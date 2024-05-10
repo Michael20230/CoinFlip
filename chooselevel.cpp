@@ -8,7 +8,7 @@
 #include <QTimer>
 #include <QLabel>
 #include <QDebug>
-
+#include <QSound>
 
 ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent),
   m_pPlayScene(nullptr)
@@ -40,7 +40,9 @@ ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent),
         });
     });
 
-    //MyPushButton* menuBtn[20];;
+	//音效
+	QSound* pChooseSound = new QSound(":/res/TapButtonSound.wav", this);
+	QSound* pBackSound = new QSound(":/res/BackButtonSound.wav", this);
     //创建关卡按钮
     for(int i=0; i<20; i++){
         //qDebug()<<"connect 1   "<<i;
@@ -65,10 +67,13 @@ ChooseLevel::ChooseLevel(QWidget *parent) : QMainWindow(parent),
                 m_pPlayScene = new PlayScene(i+1);
                 m_pPlayScene->show();
                 m_pPlayScene->move(this->x(),this->y());
+				//播放音效
+				pChooseSound->play();
             }
             //监听PlayScene返回信号
             connect(m_pPlayScene,&PlayScene::chooseScene,[=](){
                 this->show();
+				pBackSound->play();
                 delete m_pPlayScene;
                 m_pPlayScene = nullptr;
             });
